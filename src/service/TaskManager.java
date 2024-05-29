@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TaskManager {
 
-    private static Long taskNumber = 0L;
+    private Long taskNumber = 0L;
 
     private final HashMap<Long, Task> tasksMap = new HashMap<>();
     private final HashMap<Long, Subtask> subtasksMap = new HashMap<>();
@@ -35,10 +35,16 @@ public class TaskManager {
 
     public void removeAllSubtasks() {
         subtasksMap.clear();
+
+        Collection<Epic> epics = epicsMap.values();
+        for (Epic epic : epics) {
+            epic.getSubtasks().clear();
+        }
     }
 
     public void removeAllEpics() {
         epicsMap.clear();
+        subtasksMap.clear();
     }
 
     public Task getTaskById(Long id) {

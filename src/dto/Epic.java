@@ -1,5 +1,9 @@
 package dto;
 
+import dto.Subtask;
+import dto.Task;
+import dto.TaskStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +22,7 @@ public class Epic extends Task {
     }
 
     public List<Subtask> getSubtasks() {
-        return subtasks;
+        return new ArrayList<>(subtasks);
     }
 
     @Override
