@@ -1,10 +1,7 @@
 package dto;
 
-import dto.Subtask;
-import dto.Task;
-import dto.TaskStatus;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Epic extends Task {
@@ -21,8 +18,12 @@ public class Epic extends Task {
         this.subtasks = subtasks;
     }
 
+    public void setSubtasks(List<Subtask> subtasks) {
+        this.subtasks = subtasks;
+    }
+
     public List<Subtask> getSubtasks() {
-        return new ArrayList<>(subtasks);
+        return subtasks == null ? Collections.emptyList() : new ArrayList<>(subtasks);
     }
 
     @Override

@@ -52,6 +52,14 @@ public class Task {
         this.description = description;
     }
 
+    public Task copyOf(Task originalTask) {
+        Task task = new Task(originalTask.getTitle(), originalTask.getDescription());
+        task.setId(originalTask.getId());
+        task.setStatus(originalTask.getStatus());
+
+        return task;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -3,6 +3,8 @@ import dto.Subtask;
 import dto.Task;
 import dto.TaskStatus;
 import service.TaskManager;
+import service.impl.InMemoryTaskManager;
+import util.Managers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Поехали!");
 
-        TaskManager taskManager = new TaskManager();
+        TaskManager taskManager = Managers.getDefault();
 
         Task firstTask = new Task("task 1", "desc task 1");
         Task secondTask = new Task("task 2", "desc task 2");
@@ -52,5 +54,7 @@ public class Main {
         System.out.println(taskManager.getAllEpics());
         System.out.println(taskManager.getAllTasks());
         System.out.println(taskManager.getAllSubtasks());
+
+        System.out.println("sdfsdfsfd");
     }
 }
