@@ -4,13 +4,14 @@ import dto.Task;
 import service.HistoryManager;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
     private static final int HISTORY_MAX_SIZE = 10;
 
-    private final List<Task> historyList = new ArrayList<>(HISTORY_MAX_SIZE);
+    private final LinkedList<Task> historyList = new LinkedList<>();
 
     @Override
     public void add(Task task) {
@@ -19,7 +20,7 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
 
         if (historyList.size() == HISTORY_MAX_SIZE) {
-            historyList.remove(0);
+            historyList.removeFirst();
         }
 
         historyList.add(task.copyOf(task));
@@ -27,6 +28,6 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     @Override
     public List<Task> getHistory() {
-        return historyList;
+        return new ArrayList<>(historyList);
     }
 }
