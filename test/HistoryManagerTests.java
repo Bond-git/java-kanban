@@ -4,8 +4,8 @@ import dto.Task;
 import dto.TaskStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import service.HistoryManager;
-import service.impl.InMemoryHistoryManager;
+import service.managers.HistoryManager;
+import service.managers.impl.InMemoryHistoryManager;
 
 import java.util.List;
 
@@ -22,28 +22,17 @@ public class HistoryManagerTests {
     }
 
     @Test
-    void shouldSaveTaskInHistoryWithoutChangingTaskState() {
-        Task task = new Task("title", "desc");
-        task.setStatus(TaskStatus.NEW);
+    void shouldRemoveAndSaveTaskInHistoryAfterSecondAdd() {
+        Task task = new Task(1l, "title", "desc", TaskStatus.NEW);
         historyManager.add(task);
-
-        task.setDescription("new desc");
-        task.setTitle("new title");
-        task.setStatus(TaskStatus.DONE);
         historyManager.add(task);
 
         List<Task> history = historyManager.getHistory();
 
-        Task firstHistoryTask = history.get(0);
-        Task secondHistoryTask = history.get(1);
-
-        assertEquals(2, history.size());
-        assertEquals("title", firstHistoryTask.getTitle());
-        assertEquals("desc", firstHistoryTask.getDescription());
-        assertEquals(TaskStatus.NEW, firstHistoryTask.getStatus());
-        assertEquals("new title", secondHistoryTask.getTitle());
-        assertEquals("new desc", secondHistoryTask.getDescription());
-        assertEquals(TaskStatus.DONE, secondHistoryTask.getStatus());
+        assertEquals(1l, history.size());
+        assertEquals("title", task.getTitle());
+        assertEquals("desc", task.getDescription());
+        assertEquals(TaskStatus.NEW, task.getStatus());
     }
 
     @Test
@@ -90,5 +79,19 @@ public class HistoryManagerTests {
         assertEquals(1L, secondTask.getId());
         assertEquals(10L, lastTask.getId());
         assertFalse(history.contains(firstTask));
+    }
+
+    @Test
+    void shouldRemoveNodeAfterRemoveByTaskId() {
+        Task firstTask = new Task(1l, "title", "desc", TaskStatus.NEW);
+        Task secondTask = new Task(2l, "title", "desc", TaskStatus.NEW);
+        historyManager.add(firstTask);
+        historyManager.add(secondTask);
+
+        historyManager.remove(firstTask.getId());
+
+        List<Task> history = historyManager.getHistory();
+        assertEquals(1, history.size());
+        assertEquals(2, history.get(0).getId());
     }
 }

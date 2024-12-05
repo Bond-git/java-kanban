@@ -1,9 +1,9 @@
 package util;
 
-import service.HistoryManager;
-import service.TaskManager;
-import service.impl.InMemoryHistoryManager;
-import service.impl.InMemoryTaskManager;
+import service.managers.HistoryManager;
+import service.managers.TaskManager;
+import service.managers.impl.InMemoryHistoryManager;
+import service.managers.impl.InMemoryTaskManager;
 
 public class Managers {
 

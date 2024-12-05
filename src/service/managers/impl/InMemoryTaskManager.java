@@ -1,17 +1,14 @@
-package service.impl;
+package service.managers.impl;
 
 import dto.Epic;
 import dto.Subtask;
 import dto.Task;
 import dto.TaskStatus;
-import service.HistoryManager;
-import service.TaskManager;
+import service.managers.HistoryManager;
+import service.managers.TaskManager;
 import util.Managers;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class InMemoryTaskManager implements TaskManager {
 
@@ -154,6 +151,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public void removeTaskById(Long id) {
         tasksMap.remove(id);
+        historyManager.remove(id);
     }
 
     @Override
@@ -170,11 +168,13 @@ public class InMemoryTaskManager implements TaskManager {
         }
 
         subtasksMap.remove(id);
+        historyManager.remove(id);
     }
 
     @Override
     public void removeEpicById(Long id) {
         epicsMap.remove(id);
+        historyManager.remove(id);
     }
 
     @Override
