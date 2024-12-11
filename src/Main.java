@@ -2,8 +2,7 @@ import dto.Epic;
 import dto.Subtask;
 import dto.Task;
 import dto.TaskStatus;
-import service.TaskManager;
-import service.impl.InMemoryTaskManager;
+import service.managers.TaskManager;
 import util.Managers;
 
 import java.util.ArrayList;

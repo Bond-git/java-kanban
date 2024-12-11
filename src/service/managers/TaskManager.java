@@ -1,4 +1,4 @@
-package service;
+package service.managers;
 
 import dto.Epic;
 import dto.Subtask;

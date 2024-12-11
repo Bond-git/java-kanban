@@ -1,4 +1,4 @@
-package service;
+package service.managers;
 
 import dto.Task;
 
@@ -9,4 +9,6 @@ public interface HistoryManager {
     void add(Task task);
 
     List<Task> getHistory();
+
+    void remove(Long id);
 }

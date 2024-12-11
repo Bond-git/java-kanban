@@ -4,8 +4,8 @@ import dto.Task;
 import dto.TaskStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import service.TaskManager;
-import service.impl.InMemoryTaskManager;
+import service.managers.TaskManager;
+import service.managers.impl.InMemoryTaskManager;
 
 import java.util.ArrayList;
 import java.util.Collection;
