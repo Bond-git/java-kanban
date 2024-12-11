@@ -62,26 +62,6 @@ public class HistoryManagerTests {
     }
 
     @Test
-    void shouldRemoveFirstTaskAfterFillHistoryList() {
-        for (int i = 0; i <= 10; i++) {
-            Task task = new Task("title", "desc");
-            task.setId((long) i);
-            historyManager.add(task);
-        }
-
-        List<Task> history = historyManager.getHistory();
-        Task secondTask = history.get(0);
-        Task lastTask = history.get(9);
-        Task firstTask = new Task("title", "desc");
-        firstTask.setId(0L);
-
-        assertEquals(10, history.size());
-        assertEquals(1L, secondTask.getId());
-        assertEquals(10L, lastTask.getId());
-        assertFalse(history.contains(firstTask));
-    }
-
-    @Test
     void shouldRemoveNodeAfterRemoveByTaskId() {
         Task firstTask = new Task(1l, "title", "desc", TaskStatus.NEW);
         Task secondTask = new Task(2l, "title", "desc", TaskStatus.NEW);

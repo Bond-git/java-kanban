@@ -21,16 +21,18 @@ public class CustomLinkedHashMap {
         final Node<Task> newNode = new Node<Task>(oldTail, element, null);
         tail = newNode;
         tasksMap.put(element.getId(), newNode);
-        if (oldTail == null)
+        if (oldTail == null) {
             head = newNode;
-        else
+        }
+        else {
             oldTail.next = newNode;
+        }
     }
 
     public List<Task> getTasks() {
         List<Task> tasks = new ArrayList<>();
         Node<Task> currentNode = head;
-        while (!(currentNode == null)) {
+        while (currentNode != null) {
             tasks.add(currentNode.data);
             currentNode = currentNode.next;
         }
@@ -38,18 +40,18 @@ public class CustomLinkedHashMap {
     }
 
     public void removeNode(Node<Task> node) {
-        if (!(node == null)) {
+        if (node != null) {
             final Node<Task> next = node.next;
             final Node<Task> prev = node.prev;
-            node.data = null;
 
-            if (head == node && tail == node) {
+            long nodeTaskId = node.data.getId();
+            if (head != null && head.data.getId() == nodeTaskId && tail != null && tail.data.getId() == nodeTaskId) {
                 head = null;
                 tail = null;
-            } else if (head == node && !(tail == node)) {
+            } else if (head != null && head.data.getId() == nodeTaskId) {
                 head = next;
                 head.prev = null;
-            } else if (!(head == node) && tail == node) {
+            } else if (tail != null && tail.data.getId() == nodeTaskId) {
                 tail = prev;
                 tail.next = null;
             } else {
@@ -58,15 +60,6 @@ public class CustomLinkedHashMap {
             }
 
         }
-    }
-
-    public void removeFirst() {
-        head.prev = null;
-        head = head.next;
-    }
-
-    public int size() {
-        return tasksMap.size();
     }
 
     public Node<Task> get(Long id) {

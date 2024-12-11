@@ -8,8 +8,6 @@ import java.util.List;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
-    private static final int HISTORY_MAX_SIZE = 10;
-
     private final CustomLinkedHashMap historyTaskMap = new CustomLinkedHashMap();
 
     @Override
@@ -19,11 +17,6 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
 
         remove(task.getId());
-
-        if (historyTaskMap.size() == HISTORY_MAX_SIZE) {
-            historyTaskMap.removeFirst();
-        }
-
         historyTaskMap.linkLast(task.copyOf(task));
     }
 
