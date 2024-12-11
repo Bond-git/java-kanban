@@ -23,11 +23,11 @@ public class CustomLinkedHashMap {
         tasksMap.put(element.getId(), newNode);
         if (oldTail == null) {
             head = newNode;
-        }
-        else {
+        } else {
             oldTail.next = newNode;
         }
     }
+
 
     public List<Task> getTasks() {
         List<Task> tasks = new ArrayList<>();
